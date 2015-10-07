@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <br>HELLO WORLD</br>
+  <head>
+    <title>Hello World</title>
+    <style>
+      body{ background-color: grey; }
+      canvas{ background-color: white; }
+    </style>
+  </head>
+
+  <body>
+
+    <canvas id="my-canvas" width="400" height="300">
+      Your browser does not support the HTML5 canvas element.
+    </canvas>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+      var vertex_shader_url = 'shaders/vsSimple.glsl';
+      var fragment_shader_url = 'shaders/fsSimple.glsl';
+    </script>
+    <script src="js/setexternalshaders.js"></script>
+
+    <script>
+      /* 
+          Se asume que esta definido:
+          gl.CANVAS como el id del canvas
+          initShaders como funcion de inicio de shaders
+      */
+
+      window.onload = setupWebGL;
+      var gl = null;
+
+      function setupWebGL()
+      {
+        var canvas = document.getElementById("my-canvas");
+        try{
+          gl = canvas.getContext("webgl");
+        }catch(e){
+        }
+
+        if(gl){
+          initShaders();
+          drawScene();
+        }
+        else{
+          alert( "Error: Your browser does not appear to support WebGL.");
+        }
+      }
+
+      function drawScene()
+      {
+        // fondo rojo
+        gl.clearColor(1.0, 0.0, 0.0, 1.0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        // triangulo: coordenadas
+        var vertexCoords = [
+                            -1.0,-1.0,0.0,
+                            1.0,-1.0,0.0,
+                            0.0, 1.0,0.0 ];
+
+        
+        var triangleVertexVBO = gl.createBuffer();  //consigo un puntero en GPU
+        gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexVBO); //el tipo apuntado es ARRAY_BUFFER
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexCoords), gl.STATIC_DRAW); //copio mi array en GPU
+
+        // triangulo: colores
+        var vertexColors = [
+                            0.0,0.0,1.0,
+                            0.0,1.0,0.0,
+                            1.0,1.0,1.0  ];
+        
+        var triangleColorVBO = gl.createBuffer();  
+        gl.bindBuffer(gl.ARRAY_BUFFER, triangleColorVBO); 
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexColors), gl.STATIC_DRAW);
+
+        var vertexPositionAttribute = gl.getAttribLocation(glProgram,"aVertexPosition"); //id att en shader
+        gl.enableVertexAttribArray(vertexPositionAttribute); //att on
+        gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexVBO); 
+        gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0); //estructura del array
+
+        var vertexColorAttribute = gl.getAttribLocation(glProgram,"aVertexColor");
+        gl.enableVertexAttribArray(vertexColorAttribute);
+        gl.bindBuffer(gl.ARRAY_BUFFER, triangleColorVBO); 
+        gl.vertexAttribPointer(vertexColorAttribute, 3, gl.FLOAT, false, 0, 0);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 3);  //al shader
+        gl.flush();
+      }
+
+    </script>
+  </body>
+</html>
