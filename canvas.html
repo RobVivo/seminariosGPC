@@ -1,0 +1,44 @@
+<!doctype html>
+<!--
+	Seminario WebGL. #1 Introduccion al WebGL
+	Ejemplo 01. Uso del canvas en HTML5
+	2015
+-->
+
+<html lang="en">
+	<meta charset='utf-8'>
+	<p> USO DEL CANVAS </p>
+	<head>
+		<title> USO DEL CANVAS </title>
+		<style>
+			body { background-color: grey; }
+			canvas { background-color: white; }
+		</style>
+	</head>
+
+	<body onload="main()">
+		<canvas id="canvas" width= "400" height= "300">
+			El navegador no soporta HTML5 canvas
+		</canvas>
+		<script>
+			// Script de Javascript para la carga de un lienzo
+			// y un pincel que dibuje en 2D
+
+			function main()
+			{
+				// Recuperar el area de dibujo
+				var canvas = document.getElementById( "canvas" );
+				if( !canvas ) {
+					console.log( "Fallo al cargar el canvas" );
+					return;
+				}
+
+				// Recuperar el pincel para pintar sobre el canvas
+				// El pincel es 2d y dibuja un rectangulo
+				var pincel = canvas.getContext( "2d" );
+				pincel.fillStyle = "rgba( 0, 0, 255, 1.0 )";
+				pincel.fillRect( 0, 0, 150, 150 );
+			}
+		</script>
+	</body>
+</html>

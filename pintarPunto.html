@@ -1,0 +1,33 @@
+<!doctype html>
+<!--
+	Seminario WebGL. #1 Introduccion al WebGL
+	Ejemplo 01. Uso del canvas en HTML5
+	2015
+-->
+
+<html lang="en">
+	<meta charset='utf-8'>
+	<p> USO DEL CANVAS </p>
+	<head>
+		<title> USO DEL CANVAS </title>
+		<style>
+			body { background-color: grey; }
+			canvas { background-color: white; }
+		</style>
+	</head>
+
+	<body onload="main()">
+		<canvas id="canvas" width= "400" height= "300">
+			El navegador no soporta HTML5 canvas
+		</canvas>
+		<!-- Librerias de utilidad para trabajar con WebGL -->
+		<!-- Podeis encontrarlas en el libro de referencia de WebGL -->
+		<script src="lib/webgl-utils.js"></script>
+		<script src="lib/webgl-debug.js"></script>
+		<script src="lib/cuon-utils.js"></script>
+
+		<!-- Nuestro programa va aqui -->
+		<script src="js/pintarpunto.js"></script>
+
+	</body>
+</html>
