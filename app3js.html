@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- Seminarios de GPC sobre webGL/Three.js
+	 Plantilla generica para cargar un script en Three.js
+	 La app decide el tamaño del lienzo
+-->
+
+<html lang = "es">
+
+<head>
+	<meta charset = "utf-8">
+	<title> Aplicacion THREE.js </title>
+	<!-- Body sin margenes ni scroll -->
+	<style>
+		body {
+			background-color: #000;
+			margin: 0px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Contenedor del canvas -->
+	<div id = "container"></div>
+
+	<!-- Bibliotecas -->
+	<script src = "lib/three.min.js"></script>
+	<script src = "lib/OrbitControls.js"></script>
+	<script src = "lib/Coordinates.js"></script>
+	<script src = "lib/dat.gui.min.js"></script>
+	<script src = "fonts/droid_sans_regular.typeface.js"></script>	
+	<script src = "fonts/droid_serif_regular.typeface.js"></script>
+	<script src = "fonts/droid_sans_bold.typeface.js"></script>
+	<script src = "fonts/droid_serif_bold.typeface.js"></script>
+
+	<!-- Mi app -->
+	<script src = "threejs/extras.js"></script>
+
+</body>
+
+</html>

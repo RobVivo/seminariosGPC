@@ -1,5 +1,6 @@
  /*
   Fragment Shader generico
+  Espera vColor desde el vertex shader
  
   rvivo@upv.es 2014
  */
